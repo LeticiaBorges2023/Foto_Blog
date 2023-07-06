@@ -1,0 +1,236 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+    font-size: 62.5%;
+  
+    --hue: 100;
+    --color-base-white: hsl(0, 0%, 100%);
+    --color-base-gray-100: hsl(0, 0%, 96%);
+    --color-base-gray-300: hsl(var(--hue), 60%, 58%);
+    --color-base-gray-500: hsl(0, 0%, 24%);
+    --color-base-gray-900: hsl(var(--hue), 60%, 20%);
+  }
+
+html, body, input{
+    font-family: 'Mulish', sans-serif;
+}
+
+
+
+body{
+    font-size: 1.6rem;
+    background-color: var(--coloe-base-gray-white);
+    --color-base-gray-900: #202024;
+}
+
+
+#app{
+    display: grid;
+    grid-template-rows: max-content 1fr max-content; /*header main e footer*/
+    height: 100vh;
+}
+
+.container{
+    padding: 1.6rem 3.2rem;
+    width: min(112rem, 100%); /*quando chegar a largura de 1012 px ele para de creescer*/
+    margin: 0 auto; /*dá os espaçamentos na esquerda e direita deixando o layout no meio*/
+}
+
+main {
+    overflow-y: scroll; /*somente o conteudo do main vai ter scrool ou rolagem*/
+    background-color: var(--color-base-gray-100);
+ 
+}
+
+
+header, nav, nav ul{ /*ajusta todos ao lado e ao centro com um espaçamento entre eles*/
+    display: flex;
+    align-items: center;
+    gap: 7.2rem;
+    font-weight: 700;
+}
+
+header form{
+  flex:1; /*flez grow*/
+ 
+}
+
+nav ul{
+    list-style: none;
+    font-size: 1.8rem;
+    color: var(--color-base-gray-300)
+}
+
+ul li.active{
+    color: var(--color-base-gray-900);
+    
+}
+
+
+.input-wrapper label{ /*input do header*/
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+   
+}
+
+.input-wrapper input{
+    width: 100%;
+    padding: 1.6rem;
+
+    background-color: var(--color-base-gray-100);
+    border: 0;
+    border-radius: 0.6rem;
+
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.input-wrapper input::placeholder {
+    opacity: 0.56;
+    color: var(--color-base-gray-500); /*cor letra dentro do input*/
+}
+
+.avatar{
+
+    width: 4.2rem;
+    height: 4.2rem;
+
+    object-fit: cover; /*cobre a imagem deixando ela redimencionada para se ajustar ao contâiner */
+    border-radius: 50%;
+}
+
+/*galeria*/
+
+main h1{
+    padding-top: 1.6;
+    font-size: 2.4rem;
+}
+
+.gallery{ /* imagens em coluna*/
+    margin-top: 3.2rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.2rem;
+
+}
+
+.item{
+   
+    background-color: var(--color-base-gray-white);
+    border-radius: 0.8rem;
+    overflow: hidden; /*não permite que as imagens vazem para fora*/
+}
+
+.item img{
+    width: 100%;
+
+    aspect-ratio: 16/9; /*proporção da imagem*/
+    object-fit: cover;
+
+    /*
+    transition-property: all;
+    transition-duration: 200ms;
+    transition-delay: 0s;
+    transition-timing-function: ease-in-out ;
+    
+      O FORMATO ACIMA PODE SER FEITO TAMBÉM DO FORMATO A BAIXO
+    */
+
+    transition: all 200ms ease-out;
+    display: block;
+}
+
+
+
+
+.item img:hover{
+    filter: hue-rotate(7deg) contrast(101%) saturate(200%);
+    transform: scale(1.1) rotate(-2deg);
+
+    
+}
+
+.details{
+    padding: 2.2rem;
+    background-color: var(--coloe-base-gray-white);
+    z-index: 1;
+    position: relative;
+   
+
+}
+
+.details h2{
+    font-size: 1.8rem;
+    
+}
+
+
+.tags{
+    
+    margin-top:1.2rem;
+  
+}
+
+.tags span{
+    padding: 0.6rem;
+    background-color: var(--color-base-gray-100);
+    border-radius: 0.4rem;
+
+    line-height: 0; /*só pra garantir que está zerado*/
+    font: optional;
+
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+
+
+footer p{
+    text-align: center;
+    pad: 1.6rem;
+    font-weight: 600;
+
+}
+
+/*ANIMATION*/
+
+header{
+    --startY: 100%;
+    animation: move .2s;
+}
+
+footer{
+    --startY: 100%;
+    animation: move .2s;
+}
+
+/*ANIMATION*/
+
+@keyframes move {
+    from {
+      transform: translateY(var(--startY));
+    }
+  }
+  
+  .item {
+    --delay: .4s;
+    animation: appear .4s var(--delay) backwards;
+  }
+  
+  @keyframes appear {
+    0% {
+      opacity: 0;
+      transform: scale(0.7);
+    }
+  
+    50% {
+      transform: scale(1.2);
+    }
+  }
